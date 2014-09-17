@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Ninjatar</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <h1>Ninjatar</h1>
+            <p>
+                This is an avatar generator based on md5.<br>
+            The Idea is you can get an md5 from any string, with this plugin you can turn that md5 into an image.<br/>
+          
+            </p>
+            <p>Try it :</p>
+        </div>
+        <div>
+            <label>Text:&nbsp;<input type="text" id="testText"> </label>  <br/> 
+            <label>Md5:&nbsp;<input type="text" id="testMd5"> </label>  <br/> 
+        </div>
+        <div id="ninjatarContainer"></div>
+         <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+         <script src="js/ninjatar.js"></script>
+         <script>
+             $(document).ready(function(){
+                 $("#testText").keyup(function(evt){
+                     var txtMd5=""+CryptoJS.MD5($(evt.target).val());
+                     $("#testMd5").val(txtMd5);
+                     //this is where the magic happens
+                     $('#ninjatarContainer').ninjatar({"md5":txtMd5});
+                 });
+                 $("#testMd5").change(function(evt){
+                     var txtMd5=$("#testMd5").val();
+                     //this is where the magic happens
+                     $('#ninjatarContainer').ninjatar({"md5":txtMd5});
+                 });
+                 
+             });
+         </script>
+         
+    </body>
+</html>
